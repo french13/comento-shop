@@ -1,5 +1,6 @@
 {
   "name": "comento-shop",
+  "homepage": "https://french13.github.io/comento-shop/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,8 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "homepage": "https://french13.github.io/comento-shop/"
+    "eject": "react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": [
@@ -36,6 +37,9 @@
       "last 1 safari version"
     ]
   }
+  
+  
+  
 
 }
 
