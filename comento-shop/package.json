@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "homepage": "french13.github.io"
+    "homepage": "https://french13.github.io/comento-shop/"
   },
   "eslintConfig": {
     "extends": [
