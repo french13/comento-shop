@@ -1,15 +1,15 @@
 import React from 'react'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-import Main from '../pages/Main'
+import Home from '../pages/Main'
+import ProductDetail from '../pages/ProductDetail'
+import Basket from '../pages/Basket'
 import { Routes, Route } from 'react-router-dom'
 
 const Container = () => {
   return (
     <Routes>
-      <Route path='/' element={<Main/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/register' element={<Register/>}/>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/product/:productid' element={<ProductDetail/>}/>
+      <Route path='/basket' element={<Basket/>}/>
     </Routes>
   )
 }

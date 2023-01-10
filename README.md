@@ -5,4 +5,5 @@
  - react-router-dom 설정시 메인페이지는 나오나 이동시 404페이지 오류가 있어서 404.html 파일추가하고 index.html파일을 변경시켜 주었다.(MIT 오픈소스 )
 
  ## 2023-01-10
- #### react-bootstrap 설치, styled-components 설치
+ #### 1. react-bootstrap 설치, styled-components 설치
+ #### 2. 과제에 따른 components, pages 설정
