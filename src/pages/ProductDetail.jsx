@@ -1,55 +1,96 @@
-import React, { useEffect, useState } from 'react'
-import { Card, Container,Row, Col, Button } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import data from '../data/data.json'
-import styled from 'styled-components'
+import React, { useEffect, useState } from "react";
+import { Card, Container, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import data from "../data/data.json";
+import styled from "styled-components";
+import ProductDetailContent from "../components/ProductDetailContent";
+import ProductDetailReview from "../components/ProductDetailReview";
 
 const DetailDiv = styled.div`
-text-align : left;
-font-size : 1.2rem;
-`
+  text-align: left;
+  font-size: 1.2rem;
+`;
 
 const DetailButton = styled.button`
-width : 100%;
-margin : 0;
-border : none;
-background : none;
-font-size : 1.4rem;
-font-weight : 900;
-`
+  width: 100%;
+  margin: 0;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+`;
+
+const AddBasket = styled.button`
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  border: none;
+  background-color: #24dbaf;
+  font-size: 1.5rem;
+  font-weight: 900;
+`;
 
 const ProductDetail = () => {
-    const param = useParams()
-    const [product, setProduct] =useState()
+  const param = useParams();
+  const [product, setProduct] = useState();
+  const [detailTap, setDetailTap] = useState(true);
 
-    useEffect(()=>{
-     let detail = data.filter(item=> item.id === Number(param.productid))
-      setProduct(...detail)
-    }, [])
+  useEffect(() => {
+    let detail = data.filter((item) => item.id === Number(param.productid));
+    setProduct(...detail);
+  }, []);
 
   return (
-    <div>
-        {
-            product &&
-            <Container>
-            <Card>
-                <Card.Img src={product.imgUrl}/>
-                <Card.Body>
-                    <DetailDiv style={{fontWeight : '900'}}>{product.name}</DetailDiv>
-                    <DetailDiv>{product.price}</DetailDiv>
-                </Card.Body>
-            </Card>
-            <Row style={{margin : '30px 0px'}}>
-            <Col><DetailButton>상품 설명</DetailButton></Col>
-            <Col><DetailButton>상품 후기</DetailButton></Col>
-            </Row>
-            <Row>
+    <Container style={{ position: "relative" }}>
+      {product && (
+        <Container>
+          <Card style={{ border: "none" }}>
+            <Card.Img src={product.imgUrl} />
+            <Card.Body>
+              <DetailDiv style={{ fontWeight: "900" }}>
+                {product.name}
+              </DetailDiv>
+              <DetailDiv>{product.price}원</DetailDiv>
+            </Card.Body>
+          </Card>
+          <Row className="shadow-sm" style={{ margin: "30px 0px" }}>
+            <Col>
+              <DetailButton
+                onClick={() => {
+                  setDetailTap(true);
+                }}
+              >
+                상품 설명
+              </DetailButton>
+            </Col>
+            <Col>
+              <DetailButton
+                onClick={() => {
+                  setDetailTap(false);
+                }}
+              >
+                상품 후기
+              </DetailButton>
+            </Col>
+          </Row>
+          <Row>
+            {detailTap == true ? (
+              <ProductDetailContent product={product} />
+            ) : (
+              <ProductDetailReview product={product} />
+            )}
+          </Row>
+        </Container>
+      )}
 
-            </Row>
-            </Container>
-        }
-    </div>
-  )
-}
+      <AddBasket className="me-auto">장바구니 담기</AddBasket>
+    </Container>
+  );
+};
 
-export default ProductDetail
+export default ProductDetail;

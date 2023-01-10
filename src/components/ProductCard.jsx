@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import data from "../data/data.json";
 import { useNavigate } from "react-router-dom";
+import theme from "../data/themes.json"
 
 const ProductCard = () => {
   const navigate = useNavigate()
 
-  console.log(data);
+  const [productCard, setProductCard] =useState();
+
+  useEffect(()=>{
+    setProductCard(data)
+  })
+  
   return (
     <Container>
       <Row xs={1} md={2} lg={3}>
-        {data &&
-          data.map((item) => {
+        {productCard &&
+          productCard.map((item) => {
             return (
               <Col key={item.id} >
               <Card style={{margin : '10px'}} >

@@ -1,7 +1,7 @@
 import React from "react";
 import {Row, Col, Button, Navbar as NavbarBs } from "react-bootstrap";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 const MainTItle = styled.div`
   font-size: 28px;
@@ -9,12 +9,15 @@ const MainTItle = styled.div`
 `;
 
 const Navigation = () => {
+  const navigate =useNavigate()
+
   return (
-    <NavbarBs sticky='top' className="shadow-sm p-3 mb-5 bg-white rounded">
+    <NavbarBs sticky='top' className="shadow-sm p-3 mb-5 bg-white">
       <Row className="w-100">
-        <Col></Col>
         <Col>
-          <MainTItle>코멘토 쇼핑</MainTItle>
+        </Col>
+        <Col>
+          <MainTItle onClick={()=>{navigate('/')}}>코멘토 쇼핑</MainTItle>
         </Col>
         <Col>
           <Button variant="outline-primary" className="rounded-circle">
