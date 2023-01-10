@@ -9,3 +9,4 @@
  #### 2. 과제에 따른 components, pages 설정
  #### 3. remix-icons(이미티콘)설치
  #### 4. Home 디자인
+ #### 5. productDetail 디자인
