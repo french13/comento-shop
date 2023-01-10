@@ -1,11 +1,11 @@
 import './App.css';
-import Nav from './components/Nav'
+import Navigation from './components/Navigation'
 import Container from './components/Container'
 
 function App() {
   return (
-    <div className="App">
-      <Nav/>
+    <div className="App position-relative">
+      <Navigation/>
       <Container/>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../pages/Main'
+import Home from '../pages/Home'
 import ProductDetail from '../pages/ProductDetail'
 import Basket from '../pages/Basket'
 import { Routes, Route } from 'react-router-dom'

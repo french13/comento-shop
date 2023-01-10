@@ -7,3 +7,5 @@
  ## 2023-01-10
  #### 1. react-bootstrap 설치, styled-components 설치
  #### 2. 과제에 따른 components, pages 설정
+ #### 3. remix-icons(이미티콘)설치
+ #### 4. Home 디자인
