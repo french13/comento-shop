@@ -49,15 +49,15 @@ const Basket = () => {
     <BasketPriceSum>
       <BasketSumText>
         <span>상품 금액(2개)</span>
-        <span>50000</span>
+        <span>50,000</span>
         </BasketSumText>
       <BasketSumText>
       <span>배송비</span>
-      <span>3000</span>
+      <span>3,000</span>
         </BasketSumText>
       <BasketSumText>
       <span>총 주문금액</span>
-      <span>53000</span>
+      <span>53,000</span>
         </BasketSumText>
     </BasketPriceSum>
     <BuyItem className="me-auto">구매하기</BuyItem>

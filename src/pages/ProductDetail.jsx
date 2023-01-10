@@ -39,11 +39,38 @@ const ProductDetail = () => {
   const param = useParams();
   const [product, setProduct] = useState();
   const [detailTap, setDetailTap] = useState(true);
+  const [basket, setBasket] = useState([])
 
   useEffect(() => {
     let detail = data.filter((item) => item.id === Number(param.productid));
     setProduct(...detail);
   }, []);
+
+  const addBasketItem = async()=>{
+     const item = {
+        id : product.id,
+        name : product.name,
+        price : product.price,
+        imgUrl : product.imgUrl
+    }
+    let getBasketItem = localStorage.getItem('basketItem')
+    if(getBasketItem == null){
+        localStorage.setItem('basketItem', JSON.stringify([item]));
+        alert('장바구니 추가 완료')
+    }else{
+       let newItem =JSON.parse(localStorage.getItem('basketItem'));
+        newItem.push(item);
+        localStorage.setItem('basketItem', JSON.stringify(newItem));
+        alert('장바구니 추가 완료')
+    }
+
+
+   
+    // 
+
+  
+
+  }
 
   return (
     <Container style={{ position: "relative" }}>
@@ -88,7 +115,7 @@ const ProductDetail = () => {
         </Container>
       )}
 
-      <AddBasket className="me-auto">장바구니 담기</AddBasket>
+      <AddBasket onClick={addBasketItem} className="me-auto">장바구니 담기</AddBasket>
     </Container>
   );
 };

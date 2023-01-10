@@ -10,3 +10,4 @@
  #### 3. remix-icons(이미티콘)설치
  #### 4. Home 디자인
  #### 5. productDetail 디자인
+ #### 6. basket design 디자인 
