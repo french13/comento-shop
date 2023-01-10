@@ -15,7 +15,7 @@ const ProductCard = () => {
             return (
               <Col key={item.id} >
               <Card style={{margin : '10px'}} >
-                <Card.Img onClick={()=>{}} variant="top" src={item.imgUrl} height="300px" style={{ objectFit: 'cover' }}/>
+                <Card.Img onClick={()=>{navigate(`/product/${item.id}`)}} variant="top" src={item.imgUrl} height="300px" style={{ objectFit: 'cover' }}/>
                 <Card.Body>
                   <Card.Title style={{fontWeight : '900'}}>{item.name}</Card.Title>
                   <Card.Text>{item.content}</Card.Text>
