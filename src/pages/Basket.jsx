@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import styled from 'styled-components';
 
 const BuyItem = styled.button`
@@ -31,20 +31,45 @@ margin : 10px 0px;
 font-size : 1.2rem;
 `
 
+const CloseButton = styled.button`
+border : none;
+background : none;
+font-size : 1.3rem;
+font-weight : 800
+`
+
 const Basket = () => {
+  const [basketItemArray, setBasketItemArray] = useState()
+
+
+  useEffect(()=>{
+    let basketItem = JSON.parse(localStorage.getItem('basketItem'))
+    console.log(basketItem)
+    setBasketItemArray(basketItem)
+  },[])
+
+
   return (
     <Container style={{ position: "relative" }}>
       <Row>
-        <p>장바구니</p>
+        <p style={{fontSize : '2rem', fontWeight : '900'}}>장바구니</p>
       </Row>
-      <Row>
-        <Col xs={3}>사진</Col>
-        <Col xs={8}>
-          <div>이름</div>
-          <div>가격</div>
-        </Col>
-        <Col xs={1}>취소</Col>
-      </Row>
+      {
+        basketItemArray&&
+        basketItemArray.map((item)=>{
+          return (
+            <Row key={item.id} className='mt-4'>
+            <Col xs={3}><img src={item.imgUrl} alt="" width={100}/></Col>
+            <Col xs={8} className='d-flex flex-column justify-content-between' style={{textAlign:'left', padding : '5px'}}>
+              <div style={{fontWeight : '900', fontSize : '1.3rem'}}>{item.name}</div>
+              <div>{item.price}</div>
+            </Col>
+            <Col xs={1}><CloseButton>x</CloseButton></Col>
+          </Row>
+          )
+        })
+      }
+
 
     <BasketPriceSum>
       <BasketSumText>

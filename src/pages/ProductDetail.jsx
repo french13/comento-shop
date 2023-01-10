@@ -46,7 +46,8 @@ const ProductDetail = () => {
     setProduct(...detail);
   }, []);
 
-  const addBasketItem = async()=>{
+// localStorage를 이용한 장바구니 아이템 추가 기능
+  const addBasketItem = ()=>{
      const item = {
         id : product.id,
         name : product.name,
@@ -66,7 +67,7 @@ const ProductDetail = () => {
 
 
    
-    // 
+
 
   
 
