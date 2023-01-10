@@ -11,7 +11,7 @@ const ProductCard = () => {
 
   useEffect(()=>{
     setProductCard(data)
-  })
+  },[])
   
   return (
     <Container>

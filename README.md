@@ -12,3 +12,4 @@
  #### 5. productDetail 디자인
  #### 6. basket design 디자인 
  #### 7. localStorage를 이용한 장바구니에 물건추가 기능
+ #### 8. basket(장바구니) 물건 삭제 기능
