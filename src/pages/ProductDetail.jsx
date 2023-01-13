@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import data from "../data/data.json";
@@ -11,17 +11,6 @@ const DetailDiv = styled.div`
   font-size: 1.2rem;
 `;
 
-const DetailButton = styled.button`
-  width: 100%;
-  margin: 0;
-  border: none;
-  font-size: 1.4rem;
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0px;
-`;
 
 const AddBasket = styled.button`
   width: 100%;
@@ -40,6 +29,9 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   const [detailTap, setDetailTap] = useState(true);
   const [basket, setBasket] = useState([])
+
+  const detailTapTextRef = useRef()
+  const detailTapReviewRef = useRef()
 
   useEffect(() => {
     let detail = data.filter((item) => item.id === Number(param.productid));
@@ -64,13 +56,17 @@ const ProductDetail = () => {
         localStorage.setItem('basketItem', JSON.stringify(newItem));
         alert('장바구니 추가 완료')
     }
+  }
 
-
-   
-
-
-  
-
+  const detailProductText = (e)=>{
+    setDetailTap(true);
+    detailTapReviewRef.current.className = "detailTap"
+    e.target.className = "detailTapEffect"
+  }
+  const detailProductReview = (e)=>{
+    setDetailTap(false);
+    detailTapTextRef.current.className = "detailTap"
+    e.target.className = "detailTapEffect"
   }
 
   return (
@@ -88,22 +84,18 @@ const ProductDetail = () => {
           </Card>
           <Row className="shadow-sm" style={{ margin: "30px 0px" }}>
             <Col>
-              <DetailButton
-                onClick={() => {
-                  setDetailTap(true);
-                }}
+              <button className="detailTapEffect" ref={detailTapTextRef} 
+                onClick={detailProductText}
               >
                 상품 설명
-              </DetailButton>
+              </button >
             </Col>
             <Col>
-              <DetailButton
-                onClick={() => {
-                  setDetailTap(false);
-                }}
+              <button className="detailTap"  ref={detailTapReviewRef} 
+                onClick={detailProductReview}
               >
                 상품 후기
-              </DetailButton>
+              </button>
             </Col>
           </Row>
           <Row>

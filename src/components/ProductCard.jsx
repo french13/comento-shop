@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import data from "../data/data.json";
 import { useNavigate } from "react-router-dom";
-import theme from "../data/themes.json"
 
 const ProductCard = () => {
   const navigate = useNavigate()

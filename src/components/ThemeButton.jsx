@@ -1,7 +1,6 @@
 import React from 'react'
-import {Container } from 'react-bootstrap'
+import {Container, Button } from 'react-bootstrap'
 import styled from 'styled-components'
-import theme from '../data/themes.json'
 
 const Themebutton = styled.button`
 margin-right : 15px;
@@ -14,17 +13,10 @@ color : white;
 `
 
 const ThemeButton = () => {
-  let themeArray = theme.themes
   return (
     <Container className='d-flex ' style={{padding : '15px'}}>
-      {
-        themeArray &&
-        themeArray.map((item)=>{
-          return (
-            <Themebutton key={item.id}>#{item.name}</Themebutton>
-          )
-        })
-      }
+      <Themebutton># 겨울 방한템</Themebutton>
+      <Themebutton># 따순머그컵</Themebutton>
         
    
     </Container>
