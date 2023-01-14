@@ -13,3 +13,7 @@
  #### 6. basket design 디자인 
  #### 7. localStorage를 이용한 장바구니에 물건추가 기능
  #### 8. basket(장바구니) 물건 삭제 기능
+ 
+ ## 2023-01-14
+ #### detailReview페이지 디자인
+ #### basketPage 구매하기 기능 

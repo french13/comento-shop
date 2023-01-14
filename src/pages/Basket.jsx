@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const BuyItem = styled.button`
@@ -38,12 +39,25 @@ const CloseButton = styled.button`
   font-weight: 800;
 `;
 
+const BuyConfirmModal = styled.div`
+position : absolute;
+width : 50%;
+height : 100%;
+left : 25%;
+top : 40%;
+background-color : white;
+box-shadow : 0 0 0 1000px rgba(0,0,0,0.8)
+
+`;
+
 const Basket = () => {
   const [basketItemArray, setBasketItemArray] = useState(null);
   const [basketItemPriceSum, setBasketItemPriceSum] = useState(null);
   const [deliveryPrice, setDeliveryPrice] = useState(null);
   const [basketItemQuantity, setBasketItemQuantity] = useState(null);
   const [reRendering, setRerendering] = useState(true);
+  const [buyButton, setBuyButton] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     let basketItem = JSON.parse(localStorage.getItem("basketItem"));
@@ -77,8 +91,19 @@ const Basket = () => {
     setRerendering(!reRendering);
   };
 
+  const confirm = ()=>{
+      localStorage.removeItem('basketItem');
+      navigate('/')
+  }
+
   return (
     <Container style={{ position: "relative" }}>
+      {buyButton ? (
+        <BuyConfirmModal>
+          <div style={{height : "50%", fontSize : "1.5rem", padding : "40px 0px"}}>주문되었습니다.</div>
+          <div><Button onClick={confirm} style={{width : "50%", height : "70px"}}>확인</Button></div>
+        </BuyConfirmModal>
+      ) : null}
       <Row>
         <p style={{ fontSize: "2rem", fontWeight: "900" }}>장바구니</p>
       </Row>
@@ -122,7 +147,13 @@ const Basket = () => {
           <span>{basketItemPriceSum + deliveryPrice}</span>
         </BasketSumText>
       </BasketPriceSum>
-      <BuyItem>구매하기</BuyItem>
+      <BuyItem
+        onClick={() => {
+          setBuyButton(true);
+        }}
+      >
+        구매하기
+      </BuyItem>
     </Container>
   );
 };
