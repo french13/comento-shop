@@ -40,14 +40,13 @@ const CloseButton = styled.button`
 `;
 
 const BuyConfirmModal = styled.div`
-position : absolute;
-width : 50%;
-height : 100%;
-left : 25%;
-top : 40%;
-background-color : white;
-box-shadow : 0 0 0 1000px rgba(0,0,0,0.8)
-
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 25%;
+  top: 40%;
+  background-color: white;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.8);
 `;
 
 const Basket = () => {
@@ -57,7 +56,7 @@ const Basket = () => {
   const [basketItemQuantity, setBasketItemQuantity] = useState(null);
   const [reRendering, setRerendering] = useState(true);
   const [buyButton, setBuyButton] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     let basketItem = JSON.parse(localStorage.getItem("basketItem"));
@@ -91,17 +90,25 @@ const Basket = () => {
     setRerendering(!reRendering);
   };
 
-  const confirm = ()=>{
-      localStorage.removeItem('basketItem');
-      navigate('/')
-  }
+  const confirm = () => {
+    localStorage.removeItem("basketItem");
+    navigate("/");
+  };
 
   return (
     <Container style={{ position: "relative" }}>
       {buyButton ? (
         <BuyConfirmModal>
-          <div style={{height : "50%", fontSize : "1.5rem", padding : "40px 0px"}}>주문되었습니다.</div>
-          <div><Button onClick={confirm} style={{width : "50%", height : "70px"}}>확인</Button></div>
+          <div
+            style={{ height: "50%", fontSize: "1.5rem", padding: "40px 0px" }}
+          >
+            주문되었습니다.
+          </div>
+          <div>
+            <Button onClick={confirm} style={{ width: "50%", height: "70px" }}>
+              확인
+            </Button>
+          </div>
         </BuyConfirmModal>
       ) : null}
       <Row>
