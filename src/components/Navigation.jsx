@@ -12,17 +12,25 @@ const MainTItle = styled.div`
 
 const Navigation = () => {
   const navigate =useNavigate()
+  const mainUrl = process.env.PUBLIC_URL
+  const currentUrl = window.location.href
 
   let param = useParams()
 
-  console.log(param)
+
+
 
   return (
     <NavbarBs sticky='top' className="shadow-sm p-3 mb-5 bg-white">
       <Container>
       <Row className="w-100">
         <Col style={{display : 'flex', justifyContent : 'left', alignItems : 'center'}}>
-        <i className="ri-arrow-left-s-line fs-2"></i>
+          {
+            mainUrl == currentUrl?
+              null :
+              <i onClick={()=>{navigate(-1)}} className="ri-arrow-left-s-line fs-2"></i>
+          }
+    
         </Col>
         <Col>
           <MainTItle onClick={()=>{navigate('/')}}>코멘토 쇼핑</MainTItle>

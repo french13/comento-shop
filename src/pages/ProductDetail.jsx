@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import data from "../data/data.json";
 import styled from "styled-components";
 import ProductDetailContent from "../components/ProductDetailContent";
 import ProductDetailReview from "../components/ProductDetailReview";
+import { mockTheme1Produdcts, mockTheme2Produdcts } from "../data/mockData";
 
 const DetailDiv = styled.div`
   text-align: left;
@@ -34,6 +34,7 @@ const ProductDetail = () => {
   const detailTapReviewRef = useRef()
 
   useEffect(() => {
+    const data = [...mockTheme1Produdcts, ...mockTheme2Produdcts]
     let detail = data.filter((item) => item.id === Number(param.productid));
     setProduct(...detail);
   }, []);
@@ -44,7 +45,7 @@ const ProductDetail = () => {
         id : product.id,
         name : product.name,
         price : product.price,
-        imgUrl : product.imgUrl
+        imgUrl : product.thumbnail
     }
     let getBasketItem = localStorage.getItem('basketItem')
     if(getBasketItem == null){
@@ -70,11 +71,11 @@ const ProductDetail = () => {
   }
 
   return (
-    <Container style={{ position: "relative" }}>
+    <Container style={{ position: "relative", paddingBottom : "80px" }}>
       {product && (
         <Container>
           <Card style={{ border: "none" }}>
-            <Card.Img src={product.imgUrl} />
+            <Card.Img src={product.thumbnail} />
             <Card.Body>
               <DetailDiv style={{ fontWeight: "900" }}>
                 {product.name}
