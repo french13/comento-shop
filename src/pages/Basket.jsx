@@ -43,7 +43,7 @@ const Basket = () => {
   const [basketItemPriceSum, setBasketItemPriceSum] = useState(null);
   const [deliveryPrice, setDeliveryPrice] = useState(null);
   const [basketItemQuantity, setBasketItemQuantity] = useState(null);
-  const [reRendering, setRerendering] =useState(true)
+  const [reRendering, setRerendering] = useState(true);
 
   useEffect(() => {
     let basketItem = JSON.parse(localStorage.getItem("basketItem"));
@@ -66,14 +66,16 @@ const Basket = () => {
     }
   }, [reRendering]);
 
-  const removeBasketItem = (e)=>{
+  const removeBasketItem = (e) => {
     let basketItems = JSON.parse(localStorage.getItem("basketItem"));
-    const newBasketItems = basketItems.filter(item => item.id !== Number(e.target.value))
+    const newBasketItems = basketItems.filter(
+      (item) => item.id !== Number(e.target.value)
+    );
 
-    localStorage.setItem('basketItem', JSON.stringify(newBasketItems))
-    setBasketItemArray(newBasketItems)
-    setRerendering(!reRendering)
-  }
+    localStorage.setItem("basketItem", JSON.stringify(newBasketItems));
+    setBasketItemArray(newBasketItems);
+    setRerendering(!reRendering);
+  };
 
   return (
     <Container style={{ position: "relative" }}>
@@ -98,7 +100,9 @@ const Basket = () => {
                 <div>{item.price}</div>
               </Col>
               <Col xs={1}>
-                <CloseButton value={item.id} onClick={removeBasketItem}>x</CloseButton>
+                <CloseButton value={item.id} onClick={removeBasketItem}>
+                  x
+                </CloseButton>
               </Col>
             </Row>
           );

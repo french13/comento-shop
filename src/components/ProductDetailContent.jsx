@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const ProductDetailContent = ({product}) => {
+const ProductDetailContent = ({ product }) => {
   return (
     <>
-    <img src={product.mainImage} alt="" />
+      <img src={product.mainImage} alt="" />
     </>
-  )
-}
+  );
+};
 
-export default ProductDetailContent
+export default ProductDetailContent;

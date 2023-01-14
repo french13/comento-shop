@@ -11,7 +11,6 @@ const DetailDiv = styled.div`
   font-size: 1.2rem;
 `;
 
-
 const AddBasket = styled.button`
   width: 100%;
   position: fixed;
@@ -28,50 +27,50 @@ const ProductDetail = () => {
   const param = useParams();
   const [product, setProduct] = useState();
   const [detailTap, setDetailTap] = useState(true);
-  const [basket, setBasket] = useState([])
+  const [basket, setBasket] = useState([]);
 
-  const detailTapTextRef = useRef()
-  const detailTapReviewRef = useRef()
+  const detailTapTextRef = useRef();
+  const detailTapReviewRef = useRef();
 
   useEffect(() => {
-    const data = [...mockTheme1Produdcts, ...mockTheme2Produdcts]
+    const data = [...mockTheme1Produdcts, ...mockTheme2Produdcts];
     let detail = data.filter((item) => item.id === Number(param.productid));
     setProduct(...detail);
   }, []);
 
-// localStorage를 이용한 장바구니 아이템 추가 기능
-  const addBasketItem = ()=>{
-     const item = {
-        id : product.id,
-        name : product.name,
-        price : product.price,
-        imgUrl : product.thumbnail
+  // localStorage를 이용한 장바구니 아이템 추가 기능
+  const addBasketItem = () => {
+    const item = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imgUrl: product.thumbnail,
+    };
+    let getBasketItem = localStorage.getItem("basketItem");
+    if (getBasketItem == null) {
+      localStorage.setItem("basketItem", JSON.stringify([item]));
+      alert("장바구니 추가 완료");
+    } else {
+      let newItem = JSON.parse(localStorage.getItem("basketItem"));
+      newItem.push(item);
+      localStorage.setItem("basketItem", JSON.stringify(newItem));
+      alert("장바구니 추가 완료");
     }
-    let getBasketItem = localStorage.getItem('basketItem')
-    if(getBasketItem == null){
-        localStorage.setItem('basketItem', JSON.stringify([item]));
-        alert('장바구니 추가 완료')
-    }else{
-       let newItem =JSON.parse(localStorage.getItem('basketItem'));
-        newItem.push(item);
-        localStorage.setItem('basketItem', JSON.stringify(newItem));
-        alert('장바구니 추가 완료')
-    }
-  }
+  };
 
-  const detailProductText = (e)=>{
+  const detailProductText = (e) => {
     setDetailTap(true);
-    detailTapReviewRef.current.className = "detailTap"
-    e.target.className = "detailTapEffect"
-  }
-  const detailProductReview = (e)=>{
+    detailTapReviewRef.current.className = "detailTap";
+    e.target.className = "detailTapEffect";
+  };
+  const detailProductReview = (e) => {
     setDetailTap(false);
-    detailTapTextRef.current.className = "detailTap"
-    e.target.className = "detailTapEffect"
-  }
+    detailTapTextRef.current.className = "detailTap";
+    e.target.className = "detailTapEffect";
+  };
 
   return (
-    <Container style={{ position: "relative", paddingBottom : "80px" }}>
+    <Container style={{ position: "relative", paddingBottom: "80px" }}>
       {product && (
         <Container>
           <Card style={{ border: "none" }}>
@@ -85,14 +84,18 @@ const ProductDetail = () => {
           </Card>
           <Row className="shadow-sm" style={{ margin: "30px 0px" }}>
             <Col>
-              <button className="detailTapEffect" ref={detailTapTextRef} 
+              <button
+                className="detailTapEffect"
+                ref={detailTapTextRef}
                 onClick={detailProductText}
               >
                 상품 설명
-              </button >
+              </button>
             </Col>
             <Col>
-              <button className="detailTap"  ref={detailTapReviewRef} 
+              <button
+                className="detailTap"
+                ref={detailTapReviewRef}
                 onClick={detailProductReview}
               >
                 상품 후기
@@ -109,7 +112,9 @@ const ProductDetail = () => {
         </Container>
       )}
 
-      <AddBasket onClick={addBasketItem} className="me-auto">장바구니 담기</AddBasket>
+      <AddBasket onClick={addBasketItem} className="me-auto">
+        장바구니 담기
+      </AddBasket>
     </Container>
   );
 };
