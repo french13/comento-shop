@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { basketRender } from "../store";
+import { basketRender, basketReset } from "../store";
 
 const BuyItem = styled.button`
   width: 100%;
@@ -97,6 +97,7 @@ const Basket = () => {
   const confirm = () => {
     localStorage.removeItem("basketItem");
     navigate("/");
+    dispatch(basketReset())
   };
 
   return (
