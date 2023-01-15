@@ -29,7 +29,6 @@ const ProductDetail = () => {
   const param = useParams();
   const [product, setProduct] = useState();
   const [detailTap, setDetailTap] = useState(true);
-  const [basket, setBasket] = useState([]);
   const dispatch = useDispatch()
 
   const detailTapTextRef = useRef();

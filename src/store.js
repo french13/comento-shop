@@ -7,7 +7,6 @@ if(JSON.parse(localStorage.getItem('basketItem')) ){
     basketItem = basketItemQuantity.length
 }
 
-
 const basket = createSlice({
     name : "basket",
     initialState : basketItem,
@@ -22,7 +21,6 @@ const basket = createSlice({
 })
 
 export let {basketRender, basketReset} = basket.actions
-
 
 export default configureStore ({
     reducer : {
