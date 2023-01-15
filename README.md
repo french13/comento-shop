@@ -20,3 +20,4 @@
 
  ## 2023-01-15
  #### redux-tookit을 이용한 장바구니 갯수 실시간 확인
+ #### main ProductCard 디자인

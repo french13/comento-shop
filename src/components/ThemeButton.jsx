@@ -11,6 +11,10 @@ const Themebutton = styled.button`
   border-radius: 5px;
   background-color: grey;
   color: white;
+  &:hover {
+    scale : 0.9;
+    transition : all 0.2s;
+  }
 `;
 
 const ThemeButton = ({ products, setProducts }) => {

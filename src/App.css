@@ -25,6 +25,15 @@
   font-weight: 800;
 }
 
+.productCard {
+  overflow: hidden;
+}
+
+.productCard__img:hover {
+  scale : 1.05;
+  transition : all 0.2s;
+}
+
 @media (max-width : 460px) {
   .basketItem__name {
     font-size: 1rem;

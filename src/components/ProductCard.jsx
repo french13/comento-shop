@@ -12,8 +12,8 @@ const ProductCard = ({ products, setProducts }) => {
           products.map((item) => {
             return (
               <Col key={item.id}>
-                <Card style={{ margin: "10px" }}>
-                  <Card.Img
+                <Card className="productCard" style={{ margin: "10px" }}>
+                  <Card.Img className="productCard__img"
                     onClick={() => {
                       navigate(`/product/${item.id}`);
                     }}

@@ -16,6 +16,7 @@ const MainTItle = styled.div`
   display : flex;
   justify-content : center;
   align-items : center;
+  cursor : pointer;
   @media (max-width : 430px) {
     font-size : 25px
   }
@@ -63,7 +64,7 @@ const Navigation = () => {
               alignItems: "center",
             }}
           >
-            <i
+            <i style={{ cursor : "pointer"}}
               onClick={() => {
                 navigate(-1);
               }}
