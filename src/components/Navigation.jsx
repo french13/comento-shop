@@ -92,6 +92,7 @@ const Navigation = () => {
               style={{ position: "relative" }}
               variant="outline-primary"
               className="rounded-circle"
+              onClick={()=>{   navigate("/basket");}}
             >
               <i
                 onClick={() => {
