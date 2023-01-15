@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { basketRender } from "../store";
 
 const BuyItem = styled.button`
   width: 100%;
@@ -57,10 +59,10 @@ const Basket = () => {
   const [reRendering, setRerendering] = useState(true);
   const [buyButton, setBuyButton] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let basketItem = JSON.parse(localStorage.getItem("basketItem"));
-    console.log(basketItem);
     let sum = [];
 
     if (basketItem != null) {
@@ -88,6 +90,8 @@ const Basket = () => {
     localStorage.setItem("basketItem", JSON.stringify(newBasketItems));
     setBasketItemArray(newBasketItems);
     setRerendering(!reRendering);
+    dispatch(basketRender(-1))
+
   };
 
   const confirm = () => {
@@ -119,14 +123,14 @@ const Basket = () => {
           return (
             <Row key={item.id} className="mt-4">
               <Col xs={3}>
-                <img src={item.imgUrl} alt="" width={100} />
+                <img src={item.thumbnail} alt="" width={100} />
               </Col>
               <Col
                 xs={8}
                 className="d-flex flex-column justify-content-between"
                 style={{ textAlign: "left", padding: "5px" }}
               >
-                <div style={{ fontWeight: "900", fontSize: "1.3rem" }}>
+                <div className="basketItem__name">
                   {item.name}
                 </div>
                 <div>{item.price}</div>

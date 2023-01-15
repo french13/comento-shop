@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import ProductDetailContent from "../components/ProductDetailContent";
 import ProductDetailReview from "../components/ProductDetailReview";
 import { mockTheme1Produdcts, mockTheme2Produdcts } from "../data/mockData";
+import { basketRender } from "../store";
 
 const DetailDiv = styled.div`
   text-align: left;
@@ -28,6 +30,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   const [detailTap, setDetailTap] = useState(true);
   const [basket, setBasket] = useState([]);
+  const dispatch = useDispatch()
 
   const detailTapTextRef = useRef();
   const detailTapReviewRef = useRef();
@@ -44,7 +47,7 @@ const ProductDetail = () => {
       id: product.id,
       name: product.name,
       price: product.price,
-      imgUrl: product.thumbnail,
+      thumbnail: product.thumbnail,
     };
     let getBasketItem = localStorage.getItem("basketItem");
     if (getBasketItem == null) {
@@ -56,6 +59,7 @@ const ProductDetail = () => {
       localStorage.setItem("basketItem", JSON.stringify(newItem));
       alert("장바구니 추가 완료");
     }
+    dispatch(basketRender(1))
   };
 
   const detailProductText = (e) => {

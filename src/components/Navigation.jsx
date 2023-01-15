@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Row,
   Col,
@@ -7,41 +7,70 @@ import {
   Navbar as NavbarBs,
 } from "react-bootstrap";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const MainTItle = styled.div`
   font-size: 28px;
   font-weight: 600;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  @media (max-width : 430px) {
+    font-size : 25px
+  }
 `;
+
+const BasketQuantity = styled.div`
+background-color : red;
+position : absolute;
+width : 25px;
+height : 25px;
+display : flex;
+justify-content : center;
+align-items : center;
+bottom : -5px;
+right : 3px;
+border-radius : 50%;
+color : white;
+`
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const mainUrl = process.env.PUBLIC_URL;
-  const currentUrl = window.location.href;
+  const basket = useSelector((state)=>{return state.basket})
 
-  let param = useParams();
+  
+  const [basketQuantity, setBasketQuantity] = useState(0)
+
+  useEffect(()=>{
+    setBasketQuantity(basket)
+  },[basket])
+
+
+
+  
+
+
 
   return (
     <NavbarBs sticky="top" className="shadow-sm p-3 mb-5 bg-white">
       <Container>
         <Row className="w-100">
-          <Col
+          <Col xs="2"
             style={{
               display: "flex",
               justifyContent: "left",
               alignItems: "center",
             }}
           >
-            {mainUrl == currentUrl ? null : (
-              <i
-                onClick={() => {
-                  navigate(-1);
-                }}
-                className="ri-arrow-left-s-line fs-2"
-              ></i>
-            )}
+            <i
+              onClick={() => {
+                navigate(-1);
+              }}
+              className="ri-arrow-left-s-line fs-2"
+            ></i>
           </Col>
-          <Col>
+          <Col xs="8">
             <MainTItle
               onClick={() => {
                 navigate("/");
@@ -50,11 +79,12 @@ const Navigation = () => {
               코멘토 쇼핑
             </MainTItle>
           </Col>
-          <Col
+          <Col xs="2"
             style={{
               display: "flex",
               justifyContent: "right",
               alignItems: "center",
+              position : 'relative'
             }}
           >
             <Button
@@ -69,6 +99,7 @@ const Navigation = () => {
                 className="ri-shopping-basket-fill"
               ></i>
             </Button>
+            <BasketQuantity>{basketQuantity}</BasketQuantity>
           </Col>
         </Row>
       </Container>
